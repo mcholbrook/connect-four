@@ -20,19 +20,41 @@ let winner = null
 
 /*----- event listeners -----*/
 
-
+document.querySelector('.board').addEventListener('click', (e) => {
+  console.log(e.target.id)
+  console.log(e.target.class)
+})
 
 /*----- functions -----*/
 
 function init (){
+  makeBoard()
   turn = 1
   winner = null
-  board = //define null values here];
+  for (let i = 0; i <= 41; i++){
+    board[i] = 'null'
+  }
+  console.log(board)
   render()
 }
 
 function render(){
-  board.forEach(function(square, idx){
-    squares[idx].innerText = playerText[square]
-  })
+  // board.forEach(function(square, idx){
+  //   squares[idx].innerText = playerText[square]
+  // })
 }
+
+function makeBoard(){
+  for (let i = 0; i <= 41; i++){
+    const div = document.createElement('div')
+    div.id = `${i}`
+    if (i >= 35 && i <= 41){
+      div.class = 'taken'
+    }
+    //this may be a place to set the default color of the board based on the board array
+    const board = document.querySelector('.board')
+    board.appendChild(div)
+  }
+}
+
+init()

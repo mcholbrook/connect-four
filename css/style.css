@@ -1,0 +1,23 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+section.board{
+  display: grid;
+  grid-template-rows: repeat(6, 10vmin);
+  grid-template-columns: repeat(7, 10vmin);
+  grid-gap: 0vmin;
+  border: 3px solid black;
+  margin: 40px;
+  
+}
+div {
+  
+  border: 3px solid black;
+}
