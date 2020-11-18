@@ -11,12 +11,12 @@ let winCombinations = [[0, 1, 2, 3], [41, 40, 39, 38], [7, 8, 9, 10], [34, 33, 3
 
 /*----- app's state (variables) -----*/
 let turn = null
-let board = []
+let boardArr = []
 let winner = null
 
 /*----- cached element references -----*/
-
-
+const squares = Array.from(document.querySelectorAll('.board div'))
+console.log(squares)
 
 /*----- event listeners -----*/
 
@@ -32,16 +32,10 @@ function init (){
   turn = 1
   winner = null
   for (let i = 0; i <= 41; i++){
-    board[i] = 'null'
+    boardArr[i] = 'null'
   }
-  console.log(board)
+  //console.log(boardArr)
   render()
-}
-
-function render(){
-  // board.forEach(function(square, idx){
-  //   squares[idx].innerText = playerText[square]
-  // })
 }
 
 function makeBoard(){
@@ -51,10 +45,19 @@ function makeBoard(){
     if (i >= 35 && i <= 41){
       div.class = 'taken'
     }
-    //this may be a place to set the default color of the board based on the board array
     const board = document.querySelector('.board')
     board.appendChild(div)
-  }
+  } const squares = Array.from(document.querySelectorAll('.board div'))
+  console.log(squares)
+}
+
+console.log(document.board)
+ console.log(squares)
+
+function render(){
+  // board.forEach(function(square, idx){
+  //   squares[idx].style.background = playerColor[square]
+  // })
 }
 
 init()
