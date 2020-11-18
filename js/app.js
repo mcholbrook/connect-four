@@ -29,6 +29,7 @@ document.querySelector('.board').addEventListener('click', (e) => {
 
 function init (){
   makeBoard()
+  console.log(document.board)
   turn = 1
   winner = null
   for (let i = 0; i <= 41; i++){
@@ -40,19 +41,14 @@ function init (){
 
 function makeBoard(){
   for (let i = 0; i <= 41; i++){
-    const div = document.createElement('div')
+    const div = document.querySelectorAll('.board')
     div.id = `${i}`
     if (i >= 35 && i <= 41){
       div.class = 'taken'
     }
-    const board = document.querySelector('.board')
-    board.appendChild(div)
-  } const squares = Array.from(document.querySelectorAll('.board div'))
-  console.log(squares)
+  } 
 }
 
-console.log(document.board)
- console.log(squares)
 
 function render(){
   // board.forEach(function(square, idx){
