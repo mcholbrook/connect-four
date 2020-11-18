@@ -22,7 +22,7 @@ console.log(squares)
 
 document.querySelector('.board').addEventListener('click', (e) => {
   console.log(e.target.id)
-  console.log(e.target.class)
+  console.log(e.target.className)
 })
 
 /*----- functions -----*/
