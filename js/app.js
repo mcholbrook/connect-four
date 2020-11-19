@@ -1,6 +1,6 @@
 /*----- constants -----*/
 let playerColor = {
-   'null': 'black',
+   'null': '#121212',
    '1': 'rgb(255, 0, 230)',
    '-1': '#ff8000'
 }
@@ -17,6 +17,7 @@ let winner = null
 /*----- cached element references -----*/
 const squares = Array.from(document.querySelectorAll('.board div'))
 const resetBtn = document.getElementById('resetButton')
+const message = document.getElementById('message')
 
 /*----- event listeners -----*/
 
@@ -46,6 +47,8 @@ function onClick(e){
   // console.log(currentSquare)
   // console.log(squares[Number(currentSquare) + 7].classList.contains('taken'))
   if (boardArr[Number(currentSquare)] || !squares[Number(currentSquare) + 7].classList.contains('taken') || winner){
+    message.style.fontSize = "20px";
+    message.innerHTML = (`Please choose a valid square.`)
     return
   } 
   else {
@@ -67,6 +70,11 @@ function render(){
   boardArr.forEach(function(square, idx){
     squares[idx].style.background = playerColor[square]
   })
+  if (turn === 1){
+    message.innerHTML = (`It's player one's turn!`)
+  } else if (turn === -1){
+    message.innerHTML = (`It's player two's turn!`)
+  }
 }
 
 
