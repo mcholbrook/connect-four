@@ -6,6 +6,10 @@ body {
   text-align: center;
   justify-content: center;
   align-items: center;
+  --border-color: rgb(80, 254, 53);
+  color: var(--border-color);
+  background-color:#121212;
+  font-family: 'Orbitron', sans-serif;
 }
 
 section.board{
@@ -22,11 +26,47 @@ section.board{
 }
 
 div {
-  border: 3px solid black;
+  border: 3px solid;
+  border-color: var(--border-color);
   
 }
 
-#4 {
-  background-color: blue;
+
+
+
+#titleText {
+  height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: solid 3px rgba(0,255,0,.75);
 }
 
+
+#titleText {
+  animation: animated-text 2s steps(30,end) 0s 1 normal both,
+  animated-cursor 600ms steps(30,end) infinite;
+}
+
+
+/* text animation */
+
+ @keyframes animated-text{
+  from{width: 0;}
+  to{width: 250px;}
+} 
+
+/* cursor animations */
+
+ @keyframes animated-cursor{
+  from{border-right-color: rgba(0,255,0,.75);}
+  to{border-right-color: transparent;}
+}
+
+#resetButton {
+  width: 60px;
+  height: 30px;
+  margin: 20px;
+  background-color: var(--border-color);
+  font-family: Orbitron, sans-serif;
+  border: none;
+}
