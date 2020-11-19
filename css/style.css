@@ -24,17 +24,6 @@ section.board{
   
 }
 
-.playerOneHover:hover {
-  cursor: pointer;
-  background-color: rgba(255, 0, 230, 0.411);
-}
-
-.playerTwoHover:hover {
-  cursor: pointer;
-  background-color: var(--player-two-color);
-  /* #ff800092 */
-}
-
 .baseLevel {
   display: none;
   /* background-color: #ff8000 */
@@ -45,6 +34,10 @@ div {
   border-color: var(--border-color);
   border-radius: 50%;
   
+}
+
+div:hover {
+  border: 7px solid;
 }
 
 #resetButton {

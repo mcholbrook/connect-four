@@ -13,6 +13,7 @@ let winCombinations = [[0, 1, 2, 3], [41, 40, 39, 38], [7, 8, 9, 10], [34, 33, 3
 let turn = null
 let boardArr = []
 let winner = null
+let winCombo = []
 
 /*----- cached element references -----*/
 const squares = Array.from(document.querySelectorAll('.board div'))
@@ -29,6 +30,7 @@ resetBtn.addEventListener('click', init)
 function init (){
   turn = 1
   winner = null
+  winCombo = []
   for (let i = 0; i <= 41; i++){
     boardArr[i] = null
   }
@@ -38,6 +40,7 @@ function init (){
       square.classList.remove('taken')
       square.classList.remove('animate__animated')
       square.classList.remove('animate__backInDown')
+      square.classList.remove('animate__pulse')
     }
   })
   // console.log(boardArr)
@@ -48,14 +51,15 @@ function onClick(e){
   let currentSquare = e.target.id
   // console.log(currentSquare)
   // console.log(squares[Number(currentSquare) + 7].classList.contains('taken'))
-  if (boardArr[Number(currentSquare)] || !squares[Number(currentSquare) + 7].classList.contains('taken') || winner){
+  if (winner) return
+  else if (boardArr[Number(currentSquare)] || !squares[Number(currentSquare) + 7].classList.contains('taken')){
     message.innerHTML = (`Please choose a valid square.`)
     message.style.color = "rgb(255, 0, 230)"
     return
   } 
   else {
     boardArr[Number(currentSquare)] = turn
-    console.log(boardArr)
+    // console.log(boardArr)
     e.target.className = 'taken'
     e.target.className += " animate__animated animate__backInDown"
     console.log(e.target.className)
@@ -65,11 +69,16 @@ function onClick(e){
   }
 }
 
+
 function isWinner(){
   winCombinations.forEach(function(possibility){
     if (boardArr[possibility[0]] && boardArr[possibility[0]] === boardArr[possibility[1]] && boardArr[possibility[0]] === boardArr[possibility[2]] && boardArr[possibility[0]] === boardArr[possibility[3]]){
       winner = boardArr[possibility[0]]
       console.log(`There is a winner! ${winner}`)
+      console.log(possibility)
+      possibility.forEach((e) => {
+        winCombo.push(e)})
+      console.log(winCombo)
       return winner
      } else if (!boardArr.includes(null)){
        winner = "T"
@@ -98,13 +107,19 @@ function render(){
     }
     if (winner === "T"){
       message.innerHTML = "It's a tie!"
+      winnerAnimationSetup(winCombo)
+      winnerAnimation()
       // tieSounds()
     } else if (winner === 1) {
       message.innerHTML = `Player one wins this round!`
       // playerOneWin()
+      winnerAnimationSetup(winCombo)
+      winnerAnimation()
     } else if (winner === -1){
        message.innerHTML = `Player two wins this round!`
       //  playerTwoWin()
+      winnerAnimationSetup(winCombo)
+      winnerAnimation()
     } else {
        if (turn === 1){
          message.style.color = "rgb(80, 254, 53)"
@@ -115,14 +130,28 @@ function render(){
           message.innerHTML = `It's player two's turn!`
        }
      }
-  // } else if (turn === -1){
-  //   message.innerHTML = (`It's player two's turn!`)
-  //   squares.classList.remove('playerTwoHover')
-  //   squares.className = ('playerOneHover')
-  //   console.log(squares.classList)
-  // }
+}
+function winnerAnimationSetup(){
+  // squares[winCombo[0]].classList.remove('animate__animated', 'animate_backInDown')
+  // console.log(squares[winCombo[0]].classList)
+  // squares[winCombo[1]].classList.remove('animate__animated', 'animate__backInDown')
+  // squares[winCombo[2]].classList.remove('animate__animated', 'animate__backInDown')
+  // squares[winCombo[3]].classList.remove('animate__animated', 'animate__backInDown')
+  
 }
 
+function winnerAnimation(){
+ 
+    // squares[winCombo[0]].className += (' animate__animated animate_pulse') 
+    // console.log(`This is a winning square: ${squares[winCombo[0]].classList}`)
+    // squares[winCombo[1]].className += (' animate__animated animate_pulse')
+    // squares[winCombo[2]].className += (' animate__animated animate_pulse')
+    // squares[winCombo[3]].className += (' animate__animated animate_pulse')
+    
+      // square.className += " animate__animated animate__pulse"
+
+  
+}  
 
 init()
 
