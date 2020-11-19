@@ -7,6 +7,8 @@ body {
   justify-content: center;
   align-items: center;
   --border-color: rgb(80, 254, 53);
+  --player-one-color: rgb(255, 0, 230);
+  --player-two-color: #ff8000;
   color: var(--border-color);
   background-color:#121212;
   font-family: 'Orbitron', sans-serif;
@@ -18,17 +20,25 @@ section.board{
   grid-template-columns: repeat(7, 10vmin);
   grid-gap: 0vmin;
   margin: 40px;
+  /* background-color: var(--border-color) */
   
+}
+
+.board div:hover {
+  cursor: pointer;
+  background-color: var(--player-one-color);
+  opacity: 50%;
 }
 
 .baseLevel {
   display: none;
+  /* background-color: #ff8000 */
 }
 
 div {
   border: 3px solid;
   border-color: var(--border-color);
-  
+  /* border-radius: 50%; */
 }
 
 
@@ -70,3 +80,5 @@ div {
   font-family: Orbitron, sans-serif;
   border: none;
 }
+
+
