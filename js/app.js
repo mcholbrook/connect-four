@@ -36,6 +36,8 @@ function init (){
     // console.log(square)
     if (!square.classList.contains('baseLevel')){
       square.classList.remove('taken')
+      square.classList.remove('animate__animated')
+      square.classList.remove('animate__backInDown')
     }
   })
   // console.log(boardArr)
@@ -47,20 +49,35 @@ function onClick(e){
   // console.log(currentSquare)
   // console.log(squares[Number(currentSquare) + 7].classList.contains('taken'))
   if (boardArr[Number(currentSquare)] || !squares[Number(currentSquare) + 7].classList.contains('taken') || winner){
-    message.style.fontSize = "20px";
     message.innerHTML = (`Please choose a valid square.`)
+    message.style.color = "rgb(255, 0, 230)"
     return
   } 
   else {
     boardArr[Number(currentSquare)] = turn
     console.log(boardArr)
     e.target.className = 'taken'
-    // console.log(e.target.className)
+    e.target.className += " animate__animated animate__backInDown"
+    console.log(e.target.className)
     turn *= -1
-    //isWinner()
+    isWinner()
     render()
   }
-  }
+}
+
+function isWinner(){
+  winCombinations.forEach(function(possibility){
+    if (boardArr[possibility[0]] && boardArr[possibility[0]] === boardArr[possibility[1]] && boardArr[possibility[0]] === boardArr[possibility[2]] && boardArr[possibility[0]] === boardArr[possibility[3]]){
+      winner = boardArr[possibility[0]]
+      console.log(`There is a winner! ${winner}`)
+      return winner
+     } else if (!boardArr.includes(null)){
+       winner = "T"
+       console.log(`This is a tie game. ${winner}`)
+       return winner
+     }
+ })
+}
 
 
 //When the entirety of the render function is written out, consider adding and changing a class to message cached reference element
@@ -71,10 +88,39 @@ function render(){
     squares[idx].style.background = playerColor[square]
   })
   if (turn === 1){
+
     message.innerHTML = (`It's player one's turn!`)
-  } else if (turn === -1){
-    message.innerHTML = (`It's player two's turn!`)
-  }
+    squares.forEach(function(square) {
+      square.className += (' playerTwoHover')
+      square.classList.remove('playerOneHover')
+      // console.log(square.classList)
+    })
+    }
+    if (winner === "T"){
+      message.innerHTML = "It's a tie!"
+      // tieSounds()
+    } else if (winner === 1) {
+      message.innerHTML = `Player one wins this round!`
+      // playerOneWin()
+    } else if (winner === -1){
+       message.innerHTML = `Player two wins this round!`
+      //  playerTwoWin()
+    } else {
+       if (turn === 1){
+         message.style.color = "rgb(80, 254, 53)"
+         message.innerHTML = `It's player one's turn!`
+       } 
+       else {
+          message.style.color = "rgb(80, 254, 53)"
+          message.innerHTML = `It's player two's turn!`
+       }
+     }
+  // } else if (turn === -1){
+  //   message.innerHTML = (`It's player two's turn!`)
+  //   squares.classList.remove('playerTwoHover')
+  //   squares.className = ('playerOneHover')
+  //   console.log(squares.classList)
+  // }
 }
 
 

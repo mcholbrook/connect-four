@@ -24,10 +24,15 @@ section.board{
   
 }
 
-.board div:hover {
+.playerOneHover:hover {
   cursor: pointer;
-  background-color: var(--player-one-color);
-  opacity: 50%;
+  background-color: rgba(255, 0, 230, 0.411);
+}
+
+.playerTwoHover:hover {
+  cursor: pointer;
+  background-color: var(--player-two-color);
+  /* #ff800092 */
 }
 
 .baseLevel {
@@ -38,7 +43,8 @@ section.board{
 div {
   border: 3px solid;
   border-color: var(--border-color);
-  /* border-radius: 50%; */
+  border-radius: 50%;
+  
 }
 
 #resetButton {
@@ -48,6 +54,7 @@ div {
   background-color: var(--border-color);
   font-family: Orbitron, sans-serif;
   border: none;
+  outline: none;
 }
 
 
