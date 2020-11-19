@@ -16,14 +16,11 @@ let winner = null
 
 /*----- cached element references -----*/
 const squares = Array.from(document.querySelectorAll('.board div'))
-console.log(squares)
+
 
 /*----- event listeners -----*/
 
-document.querySelector('.board').addEventListener('click', (e) => {
-  console.log(e.target.id)
-  console.log(e.target.className)
-})
+document.querySelector('.board').addEventListener('click', onClick)
 
 /*----- functions -----*/
 
@@ -31,11 +28,28 @@ function init (){
   turn = 1
   winner = null
   for (let i = 0; i <= 41; i++){
-    boardArr[i] = 'null'
+    boardArr[i] = null
   }
-  //console.log(boardArr)
+  // console.log(boardArr)
   render()
 }
+
+function onClick(e){
+  let currentSquare = e.target.id
+  console.log(currentSquare)
+  console.log(squares[Number(currentSquare) + 7].classList.contains('taken'))
+  if (boardArr[Number(currentSquare)] || !squares[Number(currentSquare) + 7].classList.contains('taken') || winner){
+    return
+  } 
+  else {
+    boardArr[Number(currentSquare)] = turn
+    console.log(boardArr)
+    turn *= -1
+    //isWinner()
+    render()
+  }
+  }
+
 
 
 
@@ -45,8 +59,6 @@ function render(){
   })
 }
 
-function onClick(){
 
-}
 
 init()
