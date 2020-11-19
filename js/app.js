@@ -44,6 +44,8 @@ function onClick(e){
   else {
     boardArr[Number(currentSquare)] = turn
     console.log(boardArr)
+    e.target.className = 'taken'
+    console.log(e.target.className)
     turn *= -1
     //isWinner()
     render()
