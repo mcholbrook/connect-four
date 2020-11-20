@@ -75,7 +75,7 @@ function isWinner(){
     if (boardArr[possibility[0]] && boardArr[possibility[0]] === boardArr[possibility[1]] && boardArr[possibility[0]] === boardArr[possibility[2]] && boardArr[possibility[0]] === boardArr[possibility[3]]){
       winner = boardArr[possibility[0]]
       console.log(`There is a winner! ${winner}`)
-      console.log(possibility)
+      // console.log(possibility)
       possibility.forEach((e) => {
         winCombo.push(e)})
       console.log(winCombo)
@@ -132,23 +132,27 @@ function render(){
      }
 }
 function winnerAnimationSetup(){
-  // squares[winCombo[0]].classList.remove('animate__animated', 'animate_backInDown')
-  // console.log(squares[winCombo[0]].classList)
-  // squares[winCombo[1]].classList.remove('animate__animated', 'animate__backInDown')
-  // squares[winCombo[2]].classList.remove('animate__animated', 'animate__backInDown')
-  // squares[winCombo[3]].classList.remove('animate__animated', 'animate__backInDown')
+  squares[winCombo[0]].classList.remove('animate__animated')
+  squares[winCombo[0]].classList.remove('animate__backInDown')
+  console.log(squares[winCombo[0]].classList)
+  squares[winCombo[1]].classList.remove('animate__animated')
+  squares[winCombo[1]].classList.remove('animate__backInDown')
+  squares[winCombo[2]].classList.remove('animate__animated' )
+  squares[winCombo[2]].classList.remove('animate__backInDown')
+  squares[winCombo[3]].classList.remove('animate__animated')
+  squares[winCombo[3]].classList.remove('animate__backInDown')
   
 }
 
 function winnerAnimation(){
  
-    // squares[winCombo[0]].className += (' animate__animated animate_pulse') 
-    // console.log(`This is a winning square: ${squares[winCombo[0]].classList}`)
-    // squares[winCombo[1]].className += (' animate__animated animate_pulse')
-    // squares[winCombo[2]].className += (' animate__animated animate_pulse')
-    // squares[winCombo[3]].className += (' animate__animated animate_pulse')
+    squares[winCombo[0]].className += (' animate__animated animate__pulse') 
+    console.log(`This is a winning square: ${squares[winCombo[0]].classList}`)
+    squares[winCombo[1]].className += (' animate__animated animate__pulse')
+    squares[winCombo[2]].className += (' animate__animated animate__pulse')
+    squares[winCombo[3]].className += (' animate__animated animate__pulse')
     
-      // square.className += " animate__animated animate__pulse"
+  
 
   
 }  
