@@ -49,7 +49,7 @@ function onClick(e){
   let currentSquare = e.target.id
   if (winner) return
   else if (boardArr[Number(currentSquare)] || !squares[Number(currentSquare) + 7].classList.contains('taken')){
-    message.innerHTML = (`Please choose a valid circle.`)
+    message.innerHTML = `Please choose a valid circle.`
     message.style.color = 'rgb(255, 3, 255)'
     return
   } 
@@ -84,7 +84,7 @@ function render(){
     squares[idx].style.background = playerColor[square]
   })
   if (turn === 1){
-    message.innerHTML = (`It's player one's turn!`)
+    message.innerHTML = `It's player one's turn!`
   }
   if (winner === 'T'){
     message.innerHTML = `It's a tie!`
@@ -93,13 +93,13 @@ function render(){
   } 
   else if (winner === 1) {
     message.innerHTML = `Player one wins this round!`
-    winnerAnimation(winCombo)
+    winnerAnimation()
     let playerOneWin = new Audio ('/audio/playeronewin.wav')
     playerOneWin.play()
   } 
   else if (winner === -1){
     message.innerHTML = `Player two wins this round!`
-    winnerAnimation(winCombo)
+    winnerAnimation()
     let playerTwoWin = new Audio ('/audio/playertwowin.wav')
     playerTwoWin.play()
   } 
