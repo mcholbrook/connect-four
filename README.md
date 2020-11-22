@@ -8,7 +8,7 @@ Connect Four has a lot of nostalgia-value for me; I frequently played it with my
 
 ![Screenshot of final product](https://i.imgur.com/lghVOhX.png)
 
-## Play the game [here](connectfourgame.surge.sh)!
+## Play the game [here](http://connectfourgame.surge.sh/)!
 
 ### **Technologies Used**
 * JavaScript
