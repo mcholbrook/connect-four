@@ -1,8 +1,8 @@
-# Connect-Four
+# Connect Four
 
-This is a web version of a classic Connect-Four game. The goal is for the player to get four game pieces in a row, either horizontally, vertically, or diagonally. Whoever reaches this point first wins!
+This is a web version of a classic Connect Four game. The goal is for the player to get four game pieces in a row, either horizontally, vertically, or diagonally. Whoever reaches this point first wins!
 
-Connect-four has a lot of nostalgia-value for me; I frequently played it with my four younger siblings growing up so I decided to build a web version and share it with them! 
+Connect Four has a lot of nostalgia-value for me; I frequently played it with my four younger siblings growing up so I decided to build a web version and share it with them! 
 
 ![Wireframe for connect four game](https://i.imgur.com/ksP6EAv.png)
 
