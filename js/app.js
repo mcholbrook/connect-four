@@ -35,125 +35,92 @@ function init (){
     boardArr[i] = null
   }
   squares.forEach(function(square){
-    // console.log(square)
     if (!square.classList.contains('baseLevel')){
-      square.classList.remove('taken')
-      square.classList.remove('animate__animated')
-      square.classList.remove('animate__backInDown')
-      square.classList.remove('animate__pulse')
+      square.classList.remove('taken', 'animate__animated', 'animate__backInDown', 'animate__pulse')
     }
   })
-  // console.log(boardArr)
-  let startSound = new Audio("/audio/startsound.wav")
+  let startSound = new Audio('/audio/startsound.wav')
   startSound.play()
   render()
 }
 
 function onClick(e){
   let currentSquare = e.target.id
-  // console.log(currentSquare)
-  // console.log(squares[Number(currentSquare) + 7].classList.contains('taken'))
   if (winner) return
   else if (boardArr[Number(currentSquare)] || !squares[Number(currentSquare) + 7].classList.contains('taken')){
     message.innerHTML = (`Please choose a valid square.`)
-    message.style.color = "rgb(255, 0, 230)"
+    message.style.color = 'rgb(255, 0, 230)'
     return
   } 
   else {
     boardArr[Number(currentSquare)] = turn
-    console.log(boardArr)
     e.target.className = 'taken'
-    e.target.className += " animate__animated animate__backInDown"
-    console.log(e.target.className)
+    e.target.className += ' animate__animated animate__backInDown'
     turn *= -1
     isWinner()
-    let moveSound = new Audio("/audio/movesound.wav")
+    let moveSound = new Audio('/audio/movesound.wav')
     moveSound.play()
     render()
   }
 }
 
-
 function isWinner(){
   winCombinations.forEach(function(possibility){
     if (boardArr[possibility[0]] && boardArr[possibility[0]] === boardArr[possibility[1]] && boardArr[possibility[0]] === boardArr[possibility[2]] && boardArr[possibility[0]] === boardArr[possibility[3]]){
       winner = boardArr[possibility[0]]
-      console.log(`There is a winner! ${winner}`)
-      // console.log(possibility)
-      possibility.forEach((e) => {
-        winCombo.push(e)})
-      console.log(winCombo)
+      possibility.forEach((e) => {winCombo.push(e)})
       return winner
-     } else if (!boardArr.includes(null)){
-       winner = "T"
-       console.log(`This is a tie game. ${winner}`)
-       return winner
-     }
+    } 
+    else if (!boardArr.includes(null)){
+      winner = 'T'
+      return winner
+    }
  })
 }
-
-
-//When the entirety of the render function is written out, consider adding and changing a class to message cached reference element
-//so that you can change the color of the hover :)
 
 function render(){
   boardArr.forEach(function(square, idx){
     squares[idx].style.background = playerColor[square]
   })
   if (turn === 1){
-
     message.innerHTML = (`It's player one's turn!`)
+  }
+  if (winner === 'T'){
+    message.innerHTML = `It's a tie!`
+    let tieSound = new Audio ('/audio/tiesound.wav')
+    tieSound.play()
+  } 
+  else if (winner === 1) {
+    message.innerHTML = `Player one wins this round!`
+    winnerAnimation(winCombo)
+    let playerOneWin = new Audio ('/audio/playeronewin.wav')
+    playerOneWin.play()
+  } 
+  else if (winner === -1){
+    message.innerHTML = `Player two wins this round!`
+    winnerAnimation(winCombo)
+    let playerTwoWin = new Audio ('/audio/playertwowin.wav')
+    playerTwoWin.play()
+  } 
+  else {
+    if (turn === 1){
+      message.style.color = 'rgb(80, 254, 53)'
+      message.innerHTML = `It's player one's turn!`
+    } 
+    else {
+      message.style.color = 'rgb(80, 254, 53)'
+      message.innerHTML = `It's player two's turn!`
     }
-    if (winner === "T"){
-      message.innerHTML = "It's a tie!"
-      // winnerAnimationSetup(winCombo)
-      // winnerAnimation()
-      let tieSound = new Audio ("/audio/tiesound.wav")
-      tieSound.play()
-    } else if (winner === 1) {
-      message.innerHTML = `Player one wins this round!`
-      winnerAnimationSetup(winCombo)
-      winnerAnimation()
-      let playerOneWin = new Audio ("/audio/playeronewin.wav")
-      playerOneWin.play()
-    } else if (winner === -1){
-        message.innerHTML = `Player two wins this round!`
-        winnerAnimationSetup(winCombo)
-        winnerAnimation()
-        let playerTwoWin = new Audio ("/audio/playertwowin.wav")
-        playerTwoWin.play()
-    } else {
-       if (turn === 1){
-         message.style.color = "rgb(80, 254, 53)"
-         message.innerHTML = `It's player one's turn!`
-       } 
-       else {
-         message.style.color = "rgb(80, 254, 53)"
-         message.innerHTML = `It's player two's turn!`
-       }
-     }
-}
-function winnerAnimationSetup(){
-  squares[winCombo[0]].classList.remove('animate__animated', 'animate__backInDown')
-  console.log(squares[winCombo[0]].classList)
-  squares[winCombo[1]].classList.remove('animate__animated', 'animate__backInDown')
-  squares[winCombo[2]].classList.remove('animate__animated', 'animate__backInDown')
-  squares[winCombo[3]].classList.remove('animate__animated', 'animate__backInDown')
-  
-  
+  }
 }
 
 function winnerAnimation(){
- 
-    squares[winCombo[0]].className += (' animate__animated animate__pulse') 
-    console.log(`This is a winning square: ${squares[winCombo[0]].classList}`)
-    squares[winCombo[1]].className += (' animate__animated animate__pulse')
-    squares[winCombo[2]].className += (' animate__animated animate__pulse')
-    squares[winCombo[3]].className += (' animate__animated animate__pulse')
-    
-  
-    
-  
+  for (let i = 0; i <= winCombo.length - 1; i++){
+    squares[winCombo[i]].classList.remove('animate__animated', 'animate__backInDown')
+  }
+  for (let i = 0; i <= winCombo.length - 1; i++){
+    squares[winCombo[i]].className += (' animate__animated animate__pulse')
+  }
 }  
 
 init()
