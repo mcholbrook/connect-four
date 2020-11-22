@@ -44,6 +44,8 @@ function init (){
     }
   })
   // console.log(boardArr)
+  let startSound = new Audio("/audio/startsound.wav")
+  startSound.play()
   render()
 }
 
@@ -65,6 +67,8 @@ function onClick(e){
     console.log(e.target.className)
     turn *= -1
     isWinner()
+    let moveSound = new Audio("/audio/movesound.wav")
+    moveSound.play()
     render()
   }
 }
@@ -102,40 +106,40 @@ function render(){
     }
     if (winner === "T"){
       message.innerHTML = "It's a tie!"
-      winnerAnimationSetup(winCombo)
-      winnerAnimation()
-      // tieSounds()
+      // winnerAnimationSetup(winCombo)
+      // winnerAnimation()
+      let tieSound = new Audio ("/audio/tiesound.wav")
+      tieSound.play()
     } else if (winner === 1) {
       message.innerHTML = `Player one wins this round!`
-      // playerOneWin()
       winnerAnimationSetup(winCombo)
       winnerAnimation()
+      let playerOneWin = new Audio ("/audio/playeronewin.wav")
+      playerOneWin.play()
     } else if (winner === -1){
-       message.innerHTML = `Player two wins this round!`
-      //  playerTwoWin()
-      winnerAnimationSetup(winCombo)
-      winnerAnimation()
+        message.innerHTML = `Player two wins this round!`
+        winnerAnimationSetup(winCombo)
+        winnerAnimation()
+        let playerTwoWin = new Audio ("/audio/playertwowin.wav")
+        playerTwoWin.play()
     } else {
        if (turn === 1){
          message.style.color = "rgb(80, 254, 53)"
          message.innerHTML = `It's player one's turn!`
        } 
        else {
-          message.style.color = "rgb(80, 254, 53)"
-          message.innerHTML = `It's player two's turn!`
+         message.style.color = "rgb(80, 254, 53)"
+         message.innerHTML = `It's player two's turn!`
        }
      }
 }
 function winnerAnimationSetup(){
-  squares[winCombo[0]].classList.remove('animate__animated')
-  squares[winCombo[0]].classList.remove('animate__backInDown')
+  squares[winCombo[0]].classList.remove('animate__animated', 'animate__backInDown')
   console.log(squares[winCombo[0]].classList)
-  squares[winCombo[1]].classList.remove('animate__animated')
-  squares[winCombo[1]].classList.remove('animate__backInDown')
-  squares[winCombo[2]].classList.remove('animate__animated' )
-  squares[winCombo[2]].classList.remove('animate__backInDown')
-  squares[winCombo[3]].classList.remove('animate__animated')
-  squares[winCombo[3]].classList.remove('animate__backInDown')
+  squares[winCombo[1]].classList.remove('animate__animated', 'animate__backInDown')
+  squares[winCombo[2]].classList.remove('animate__animated', 'animate__backInDown')
+  squares[winCombo[3]].classList.remove('animate__animated', 'animate__backInDown')
+  
   
 }
 
@@ -148,7 +152,7 @@ function winnerAnimation(){
     squares[winCombo[3]].className += (' animate__animated animate__pulse')
     
   
-
+    
   
 }  
 

@@ -9,7 +9,6 @@ body {
   --border-color: rgb(80, 254, 53);
   --player-one-color: rgb(255, 0, 230);
   --player-two-color: #ff8000;
-  /* --player-two-color: #ff00ee; */
   color: var(--border-color);
   background-color:#121212;
   font-family: 'Orbitron', sans-serif;
@@ -20,9 +19,7 @@ section.board{
   grid-template-rows: repeat(7, 10vmin);
   grid-template-columns: repeat(7, 10vmin);
   grid-gap: 0vmin;
-  margin: 10px;
-  /* background-color: var(--border-color) */
-  
+  margin: 10px; 
 }
 
 .baseLevel {
@@ -30,23 +27,10 @@ section.board{
   /* background-color: #ff8000 */
 }
 
-/* #message {
-  color: #fff;
-  text-shadow:  0 0 5px #fff,
-  0 0 10px #fff,
-  0 0 20px #fff,
-  0 0 40px #0ff,
-  0 0 80px #0ff,
-  0 0 90px #0ff,
-  0 0 100px #0ff,
-  0 0 150px #0ff;
-} */
-
 div {
   border: 3px solid;
   border-color: var(--border-color);
   border-radius: 50%;
-
 }
 
 div:hover {
@@ -63,9 +47,6 @@ div:hover {
   outline: none;
 }
 
-
-
-
 #titleText {
   height: 40px;
   white-space: nowrap;
@@ -73,12 +54,10 @@ div:hover {
   border-right: solid 3px rgba(0,255,0,.75);
 }
 
-
 #titleText {
   animation: animated-text 2s steps(30,end) 0s 1 normal both,
   animated-cursor 600ms steps(30,end) infinite;
 }
-
 
 /* text animation */
 
