@@ -1,29 +1,23 @@
 # Connect-Four
 
+This is a web version of a classic Connect-Four game. The goal is for the player to get four game pieces in a row, either horizontally, vertically, or diagonally. Whoever reaches this point first wins!
+
+Connect-four has a lot of nostalgia-value for me; I frequently played it with my four younger siblings growing up so I decided to build a web version and share it with them! 
+
 ![Wireframe for connect four game](https://i.imgur.com/ksP6EAv.png)
 
+![Screenshot of final product](https://i.imgur.com/lghVOhX.png)
 
-### **Pseudocode**
+## Play the game [here](connectfourgame.surge.sh)!
 
-* Define the necessary constants
-* Define the necessary variables
-* Store any cached element references
-* Define the necessary event listeners
-* Initialize the game
-  * Set turn
-  * Set clear game board
-  * Set winner as null
-  * Call render function 
-* Handle user clicking a square
-  * Get id of clicked square
-  * Check to make sure that square is available && eligible
-  * If so, update board variables and render on screen
-    * Check to see if that constitutes a win
-      * Compare board array to possible win combinations to see if any win conditions have been met
-    * If there is a winner, update winner variable
-    * If there is not a winner, check to see if there are still possible moves on the board
-      * If no possible moves remain, display tie message and halt gameplay
-    * If there are still possible moves, update turn variable, display updated turn message, and repeat "handle a user clicking a square"
-  * If the square is either not available or not eligible, display message asking user to choose an eligible square and repeat "handle a user clicking a square"
-* Handle user pressing reset
-  * Initialize the game again, resetting state variables, and repeat the steps above
+### **Technologies Used**
+* JavaScript
+* HTML
+* CSS
+
+### **Future Enhancements**
+* Scoreboard that keeps track of who has one the most rounds, player one or player two
+* Ability to play with the computer
+
+
+

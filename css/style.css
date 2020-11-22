@@ -7,7 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   --border-color: rgb(80, 254, 53);
-  --player-one-color: rgb(255, 0, 230);
+  --player-one-color: rgb(255, 3, 255);
   --player-two-color: #ff8000;
   color: var(--border-color);
   background-color:#121212;
