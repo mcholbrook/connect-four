@@ -14,17 +14,31 @@ let turn = null
 let boardArr = []
 let winner = null
 let winCombo = []
+let computerPossibleMoves = []
+let secretNum = null
 
 /*----- cached element references -----*/
 
 const squares = Array.from(document.querySelectorAll('.board div'))
 const resetBtn = document.getElementById('resetButton')
 const message = document.getElementById('message')
+const compGameBtn = document.getElementById('compGameButton')
 
 /*----- event listeners -----*/
 
 document.querySelector('.board').addEventListener('click', onClick)
 resetBtn.addEventListener('click', init)
+compGameBtn.addEventListener('click', (e) => {
+  if (e.target.innerHTML === 'Play the computer'){
+    e.target.innerHTML = 'Play with a pal'
+    init()
+  } 
+  else {
+    e.target.innerHTML = 'Play the computer'
+    init()
+  }
+})
+
 
 /*----- functions -----*/
 
@@ -59,8 +73,7 @@ function onClick(e){
     e.target.className += ' animate__animated animate__backInDown'
     turn *= -1
     isWinner()
-    let moveSound = new Audio('/audio/movesound.wav')
-    moveSound.play()
+    moveSound()
     render()
   }
 }
@@ -70,13 +83,18 @@ function isWinner(){
     if (boardArr[possibility[0]] && boardArr[possibility[0]] === boardArr[possibility[1]] && boardArr[possibility[0]] === boardArr[possibility[2]] && boardArr[possibility[0]] === boardArr[possibility[3]]){
       winner = boardArr[possibility[0]]
       possibility.forEach((e) => {winCombo.push(e)})
+      if (winner === -1 && compGameBtn.innerHTML === 'Play with a pal'){
+        message.innerHTML = 'The computer won this round!'
+        playerTwoSound()
+        winnerAnimation()
+      }
       return winner
     } 
     else if (!boardArr.includes(null)){
       winner = 'T'
       return winner
-    }
- })
+    } 
+ }) 
 }
 
 function render(){
@@ -84,7 +102,17 @@ function render(){
     squares[idx].style.background = playerColor[square]
   })
   if (turn === 1){
+    message.style.color = 'rgb(80, 254, 53)'
     message.innerHTML = `It's player one's turn!`
+  } 
+  else if (turn === -1 && compGameBtn.innerHTML === 'Play the computer'){
+    message.style.color = 'rgb(80, 254, 53)'
+    message.innerHTML = `It's player two's turn!`
+  } 
+  else if (turn === -1 && compGameBtn.innerHTML === 'Play with a pal'){
+    message.style.color = 'rgb(80, 254, 53)'
+    message.innerHTML = `It's the computer's turn`
+    computerMoveExecute()
   }
   if (winner === 'T'){
     message.innerHTML = `It's a tie!`
@@ -100,19 +128,18 @@ function render(){
   else if (winner === -1){
     message.innerHTML = `Player two wins this round!`
     winnerAnimation()
-    let playerTwoWin = new Audio ('/audio/playertwowin.wav')
-    playerTwoWin.play()
+    playerTwoSound()
   } 
-  else {
-    if (turn === 1){
-      message.style.color = 'rgb(80, 254, 53)'
-      message.innerHTML = `It's player one's turn!`
-    } 
-    else {
-      message.style.color = 'rgb(80, 254, 53)'
-      message.innerHTML = `It's player two's turn!`
-    }
-  }
+}
+
+function playerTwoSound(){
+  let playerTwoWin = new Audio ('/audio/playertwowin.wav')
+  playerTwoWin.play()
+}
+
+function moveSound(){
+  let moveSound = new Audio ('/audio/movesound.wav')
+  moveSound.play()
 }
 
 function winnerAnimation(){
@@ -123,6 +150,48 @@ function winnerAnimation(){
     squares[winCombo[i]].className += (' animate__animated animate__pulse')
   }
 }  
+
+function computerMoveLogic(){
+  computerPossibleMoves = []
+  for (let i = 0; i <= 41; i++){
+    if (i < 6 && squares[i+7].classList.contains('taken')){
+      computerPossibleMoves.push(Number(squares[i].id))
+    }
+    else if (i > 6 && !squares[i].classList.contains('taken') && !squares[i - 7].classList.contains('taken') && squares[i + 7].classList.contains('taken')){
+      computerPossibleMoves.push(Number(squares[i].id))
+    } 
+  }
+  chooseRandom()
+  let computerChoice = computerPossibleMoves[secretNum]
+  setTimeout(() => {
+    boardArr[computerChoice] = -1
+    squares[computerChoice].classList.add('taken', 'animate__animated', 'animate__backInDown')
+    render()
+    moveSound()
+    isWinner()
+  }, 1000)
+} 
+
+
+function chooseRandom(){
+  secretNum = null
+  secretNum = Math.floor(Math.random()*6) + 1
+}
+
+
+function computerMoveExecute(){
+  if (turn === -1 && compGameBtn.innerHTML === 'Play with a pal'){
+    message.innerHTML = `It's the computer's turn!`
+    computerMoveLogic()
+    moveSound()
+    turn *= -1
+  } 
+  isWinner()
+  if (winner != null){
+    render()
+  }
+}
+
 
 init()
 
