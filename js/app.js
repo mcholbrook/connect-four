@@ -109,7 +109,7 @@ function render(){
     message.style.color = 'rgb(80, 254, 53)'
     message.innerHTML = `It's player two's turn!`
   } 
-  else if (turn === -1 && compGameBtn.innerHTML === 'Play with a pal'){
+  else if (turn === -1 && compGameBtn.innerHTML === 'Play with a pal' && winner === null){
     message.style.color = 'rgb(80, 254, 53)'
     message.innerHTML = `It's the computer's turn`
     computerMoveExecute()

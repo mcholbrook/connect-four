@@ -6,7 +6,7 @@ Connect Four has a lot of nostalgia-value for me; I frequently played it with my
 
 ![Wireframe for connect four game](https://i.imgur.com/ksP6EAv.png)
 
-![Screenshot of final product](https://i.imgur.com/lghVOhX.png)
+![Screenshot of final product](https://i.imgur.com/874Xf7Y.png)
 
 ## Play the game [here](http://connectfourgame.surge.sh/)!
 
