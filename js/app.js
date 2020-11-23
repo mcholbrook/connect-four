@@ -172,12 +172,10 @@ function computerMoveLogic(){
   }, 1000)
 } 
 
-
 function chooseRandom(){
   secretNum = null
   secretNum = Math.floor(Math.random()*6) + 1
 }
-
 
 function computerMoveExecute(){
   if (turn === -1 && compGameBtn.innerHTML === 'Play with a pal'){
@@ -191,7 +189,6 @@ function computerMoveExecute(){
     render()
   }
 }
-
 
 init()
 
