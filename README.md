@@ -17,7 +17,7 @@ Connect Four has a lot of nostalgia-value for me; I frequently played it with my
 
 ### **Future Enhancements**
 * Scoreboard that keeps track of who has one the most rounds, player one or player two
-* Ability to play with the computer
+* Ability to play with the computer in a more intelligent way, possibly utilizing minmax strategy/alpha-beta pruning.
 
 
 
