@@ -181,7 +181,6 @@ function computerMoveExecute(){
   if (turn === -1 && compGameBtn.innerHTML === 'Play with a pal'){
     message.innerHTML = `It's the computer's turn!`
     computerMoveLogic()
-    moveSound()
     turn *= -1
   } 
   isWinner()
